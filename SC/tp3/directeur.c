@@ -34,16 +34,17 @@ int main(int argc, char const *argv[])
 			if (id_s==-1)
 				raler("Acces au semaphore");
 
-			if (semctl (id_s, 2, GETVAL) != 0)
+			if (semctl (id_s, 1, GETVAL) != 0)
 			{
 				raler("Ouverture impossible");
 			}
 
 			adr [0] = 1; 			 //1=ouvert
-			V(id_s, 4);
+			V(id_s, 3);
 
 			if (shmdt (adr) == -1)
 				raler("shmdt");
+			etat ("Musée ouvert.", 1);
 		}
 
 		else if (strcmp (argv[1], "fermer")==0)
@@ -66,7 +67,8 @@ int main(int argc, char const *argv[])
 			if (id_s==-1)
 				raler("Acces au semaphore");
 
-			V(id_s, 3);
+			V(id_s, 2);
+			etat ("Musée fermé.", 1);
 		}
 
 		else if (strcmp (argv[1], "supprimer")==0)
@@ -85,6 +87,7 @@ int main(int argc, char const *argv[])
 
 			if(semctl (id_s, 0, IPC_RMID, NULL)==-1)
 				raler ("semctl suppression");
+			etat ("Musée supprimé.", 1);
 		}
 
 		else
@@ -121,25 +124,29 @@ int main(int argc, char const *argv[])
 
 			if (shmdt (adr) == -1)
 				raler("shmdt");
+			etat ("Segment créé.", 3);
 
 			//CREATION DU GROUPE DE SEMAPHORES
-			id_s=semget (clef_s, 5, IPC_CREAT | 0666);
+			id_s=semget (clef_s, 4, IPC_CREAT | 0666);
 			if (id_s==-1)
 				raler("Creation du semaphore");
 
 			x+= semctl (id_s, 0, SETVAL, 0);
-			x+= semctl (id_s, 1, SETVAL, file);
-			x+= semctl (id_s, 2, SETVAL, 1);
+			x+= semctl (id_s, 1, SETVAL, 1);
+			x+= semctl (id_s, 2, SETVAL, 0);
 			x+= semctl (id_s, 3, SETVAL, 0);
-			x+= semctl (id_s, 4, SETVAL, 0);
 
 			if (x < 0) //teste si au moins un des setval a donne une erreur
 				raler ("semctl");
+
+			etat ("Sémaphores créés.", 3);
+			etat ("Musée créé.", 1);
 		}
 	}
 
 	else 
 		raler ("usage: ./directeur [ouvrir | fermer | supprimer | creer (capacité) (file)]");
 
+	etat ("Directeur terminé.", 4);
 	return 0;
 }

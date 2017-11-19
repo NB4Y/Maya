@@ -1,9 +1,8 @@
 semaphore
 0 Visiteur can go V
-1 Places file	
-2 Controleur	0 present 1 absent
-3 Controleur has a job (musée ouvert)
-4 Controleur has a job (musée fermé)
+1 Controleur	0 present 1 absent
+2 Controleur has a job (musée ouvert)
+3 Controleur has a job (musée fermé)
 
 memoire
 0 fermé = 0 ouvert = 1 fermeture imminente = 2

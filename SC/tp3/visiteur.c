@@ -4,7 +4,7 @@
 
 int main(int argc, char const *argv[])
 {
-	int Duree, x, id_s, id_m;
+	int Duree, id_s, id_m;
 	int *adr;
 	key_t clef_m, clef_s;
 	if (argc != 2)
@@ -15,7 +15,7 @@ int main(int argc, char const *argv[])
 	{
 		raler ("usage: ./visiteur (duree de visite > 0)");
 	}
-	
+
 	clef_m = ftok ("/etc/passwd", 'M');
 	if (clef_m == -1)
 		raler ("ftok memoire");
@@ -36,24 +36,23 @@ int main(int argc, char const *argv[])
 	if (adr == (void *) -1)
 		raler ("shmat");
 
-	x = semctl (id_s , 1, GETVAL);
-	if (x == -1)
-		raler ("semctl setval");
-	else if (x == 0)
-		return 0;
+	if (adr [3] >= adr [4])
+		return 0;	//Si la file est trop longue, le visiteur renonce
 
-	P(id_s, 1);		//Entre dans la file
-	adr[3]++;
-	V (id_s, 3);	//Signale sa présence au controleur
+	adr[3]++;		//Entre dans la file
+	etat ("Visiteur arrivé dans la file.", 2);
+	V (id_s, 2);	//Signale sa présence au controleur
 	P(id_s, 0);		//Demande l'accès
 
-	V (id_s, 1);
 	adr[3]--;
+	etat ("Visiteur sorti de la file.", 2);
 	adr[1]++;
+	etat ("Visiteur entré dans le musée.", 1);
 	Duree*=1000;
 	usleep (Duree);
 	adr[1]--;
-	V (id_s, 3);	//Signale sa présence au controleur
+	etat ("Visiteur sorti du musée.", 1);
+	V (id_s, 2);	//Signale son départ au controleur
 
 	if (shmdt (adr) == -1)
 		raler("shmdt");

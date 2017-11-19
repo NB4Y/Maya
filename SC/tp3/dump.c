@@ -44,7 +44,7 @@ int main(int argc, char const *argv[])
 	if (id == -1)
 		raler ("semget");
 
-	etat_controleur = semctl (id , 2, GETVAL);
+	etat_controleur = semctl (id , 1, GETVAL);
 
 	//Le musée est ouvert/fermé
 	printf("Le musée est ");

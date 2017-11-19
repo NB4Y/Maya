@@ -6,5 +6,6 @@
 #include <errno.h>
 
 void raler (char *msg);
+void etat(char *msg, int lvl);
 void P (int id, int num);
 void V (int id, int num);

@@ -32,31 +32,37 @@ int main(int argc, char const *argv[])
 	if (adr == (void *) -1)
 		raler ("shmat");
 
-	P(id_s, 2);
+	P(id_s, 1);
+	etat ("Controleur arrivé.", 1);
 
 	if (semctl (id_s, 0, SETVAL, 0)==-1)
 		raler ("semctl");
 
 	while (adr[0]==0)
 	{
-		P(id_s, 4);
+		etat ("Controleur attend l'ouverture.", 2);
+		P(id_s, 3);
 	}
 
+	
 	while (adr[0]!=2)
 	{
 		if (adr[1]<adr[2] && adr[3]>0)
 		{
+			etat ("Controleur laisse entrer visiteur.", 3);
 			V(id_s, 0);
 		}
-		P(id_s, 3);
+		P(id_s, 2);
 	}
 	
+	etat ("Controleur attend la sortie des derniers visiteurs.", 2);
 	while (adr[1]>0)
 	{
-		P(id_s, 4);
+		P(id_s, 3);
 	}
 
-	V(id_s, 2);
+	V(id_s, 1);
+	etat ("Controleur parti.", 1);
 	
 	adr = shmat (id_m, NULL, 0);
 	if (adr == (void *) -1)
