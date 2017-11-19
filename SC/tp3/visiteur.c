@@ -52,7 +52,10 @@ int main(int argc, char const *argv[])
 	usleep (Duree);
 	adr[1]--;
 	etat ("Visiteur sorti du musée.", 1);
-	V (id_s, 2);	//Signale son départ au controleur
+	if (adr[0]==1)
+		V (id_s, 2);	//Signale son départ au controleur
+	else
+		V (id_s, 3);	//Signale son départ au controleur
 
 	if (shmdt (adr) == -1)
 		raler("shmdt");

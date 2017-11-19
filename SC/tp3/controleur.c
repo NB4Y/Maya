@@ -55,7 +55,11 @@ int main(int argc, char const *argv[])
 		P(id_s, 2);
 	}
 	
+	if (semctl (id_s, 3, SETVAL, 0)==-1) //on commence à considérer les visiteurs
+		raler ("semctl");				 //sortants à partir de maintenant
+
 	etat ("Controleur attend la sortie des derniers visiteurs.", 2);
+
 	while (adr[1]>0)
 	{
 		P(id_s, 3);

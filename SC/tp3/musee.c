@@ -17,7 +17,6 @@ void etat(char *msg, int lvl)
 	int x= atoi (getenv ("DEBUG_MUSEE"));
 	if (x>0)
 	{
-		//printf("%d\n", x);
 		if (x >= lvl)
 		{
 			fprintf(stdout, "%s\n", msg);
