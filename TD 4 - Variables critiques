@@ -1,0 +1,25 @@
+TD 4 - Variables critiques
+
+(x,?,?)
+
+(x²,2x²,x²-5)
+(x+1,2(x+1),x-4)
+
+
+
+struct liste {
+	struct liste *suivant;
+	int valeur;
+} *tete = NULL;
+
+void f (void) {
+	struct liste *p; int x;
+
+	x=lire_valeur ();
+	p=malloc (sizeof *p);
+	p->valeur = x;
+	p->suivant = tete;
+	tete=p;
+}
+
+	

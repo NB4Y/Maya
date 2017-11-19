@@ -1,0 +1,81 @@
+2.
+PL/SQL
+
+Set SERVEROUTPUT on
+
+Declare
+	id circuit.identifiant%TYPE:=9;
+	vD circuit.villeDepart%TYPE;
+	vA circuit.villeArrivee%TYPE;
+	nbE Integer;
+Begin
+	select villeDepart into vD, villeArrivee into vA
+	from Circuit
+	where identifiant=id;
+
+	Select ordre
+	from Etape
+	where identifiant=id;
+
+	nbE=sql%rowcount;
+	
+	DBMS_OUTPUT.PUT_LINE ('Information sur circuit 9: '||vD||','||vA||','||nbE||'étapes');
+End;
+
+3.
+set echo off
+set verify off
+set SERVEROUTPUT on
+
+VARIABLE mess_g varchar2(100)
+ACCEPT nomLieu_g CHAR DEF 'Canaux' PROMPT Lieu?;
+ACCEPT ville_g CHAR DEF 'Amsterdam' PROMPT Ville?;
+ACCEPT pays_g CHAR DEF 'Pays-Bas' PROMPT Pays?;
+Declare
+	numVisite_v INTEGER.
+BEGIN
+	Select count(*) INTO numVisite_v
+	From etape
+	where nomLieu = '&nomLieu_g'
+	and ville = '&ville_g'
+	and pays = '&pays_g';
+	IF numVisite = 0 THEN
+		DELETE FROM LieuAVisiter
+		where nomLieu = '&nomLieu_g'
+		and ville = '&ville_g'
+		and pays = '&pays_g';
+		!mess_g:='OK';
+	ELSE
+		!mess_g:='Suppression impossible';
+	END IF
+
+	DBMS_OUTPUT.PUT_LINE(:mess_g);
+END;
+
+Il est possible de forcer le format d entrée avec
+ACCEPT :exemple:
+	ACCEPT salaire NUMBER FORMAT '9999.99'
+		PROMPT 'ENTREZ LE SALAIRE';
+
+4.
+set SERVEROUTPUT on
+CREATE OR REPLACE PROCEDURE 
+				bloqueReserv (N NUMBER)
+IS
+	mess_v NVARCHAR2 (50);
+	numrow_n NUMBER;
+BEGIN
+	UPDATE circuit
+	SET nbPlaceDispo=0
+	WHERE dateDepart-sysdate < numDay_p;
+
+	IF SQL%NOTFOUND THEN
+		mess_v:= 'aucun circuit modifié';
+	ELSE
+		numrow_n:=SQL%ROWCOUNT;
+		mess_v:=to_char(numrow_n) ||
+			'circuits modifiés';
+	END IF;
+
+	DBMS_OUTPUT.PUT_LINE(mess_v);
+END;

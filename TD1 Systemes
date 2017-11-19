@@ -1,0 +1,48 @@
+Exercice 1
+
+150
+100
+60
+52
+50.2
+
+Speedups
+1
+1.5
+2.5
+2.88
+2.99
+
+Exercice 2
+
+200€
+150€
+100€
+4000€
+10000€
+
+Exercice 3
+
+En considérant l'execution séquentielle à 1, et f le code ne pouvant pas etre executé en parallèle La vitesse minimale d'execution de l'algorithme baisse de plus en plus vers f, donc le speedup 
+maximum serait de S(n)=Ts /Tp(n) <=> S(n)= 1/f.
+
+Exercice 4
+
+Speedup=(5+2n)/7
+E=(5+2n)/7n
+
+E(n)>=1/2
+(5+2n)/7n>=1/2
+5+2n>=7n/2
+10>=7n-4n
+n>=10/3
+
+Exercice 5
+
+1.Taux: 1/4
+Speedup: /
+
+2.Taux: 1/3
+Speedup: 4/3
+
+Exercice 6 à faire

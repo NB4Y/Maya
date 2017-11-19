@@ -1,0 +1,28 @@
+2.
+	(t-1)p+1+(t-1)p+2+...+(t-1)p+p
+
+	1. Somme 1_p
+	2. Somme 1_p * p
+	3. Somme 1_p * 2p
+
+	n. Somme 1_p * (n-1)p
+
+	(n-1)p²+(p(p+1))/2
+
+
+
+void *fonction (void *arg)
+{
+	
+}
+
+
+int main (int argc, char *argv [])
+{
+	int n = atoi (argv[1]);
+	int p = atoi (argv[2]);
+	int i, tab [n];
+	pthread_t tid [n] ;
+	for (i)
+		pthread_create (&tid [i], NULL, fonction, &tab[i]);
+}

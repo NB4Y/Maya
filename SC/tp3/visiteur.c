@@ -1,0 +1,62 @@
+#include <unistd.h>
+#include "musee.h"
+
+
+int main(int argc, char const *argv[])
+{
+	int Duree, x, id_s, id_m;
+	int *adr;
+	key_t clef_m, clef_s;
+	if (argc != 2)
+		raler ("usage: ./visiteur (duree de visite)");
+
+	Duree = atoi(argv[1]);
+	if (Duree < 0)
+	{
+		raler ("usage: ./visiteur (duree de visite > 0)");
+	}
+	
+	clef_m = ftok ("/etc/passwd", 'M');
+	if (clef_m == -1)
+		raler ("ftok memoire");
+
+	clef_s = ftok ("/etc/passwd", 'S');
+	if (clef_s == -1)
+		raler ("ftok semaphore");
+
+	id_s = semget (clef_s, 0, 0);
+	if (id_s == -1)
+		raler ("semget");
+
+	id_m=shmget (clef_m, 0, 0);
+	if (id_m==-1)
+		raler("Acces a la memoire");
+
+	adr = shmat (id_m, NULL, 0);
+	if (adr == (void *) -1)
+		raler ("shmat");
+
+	x = semctl (id_s , 1, GETVAL);
+	if (x == -1)
+		raler ("semctl setval");
+	else if (x == 0)
+		return 0;
+
+	P(id_s, 1);		//Entre dans la file
+	adr[3]++;
+	V (id_s, 3);	//Signale sa présence au controleur
+	P(id_s, 0);		//Demande l'accès
+
+	V (id_s, 1);
+	adr[3]--;
+	adr[1]++;
+	Duree*=1000;
+	usleep (Duree);
+	adr[1]--;
+	V (id_s, 3);	//Signale sa présence au controleur
+
+	if (shmdt (adr) == -1)
+		raler("shmdt");
+
+	return 0;
+}

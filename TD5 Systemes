@@ -1,0 +1,14 @@
+4)
+verrouiller:
+	move r0, 1
+	swap (verrou), r0
+	test r0
+	jnz verrouiller
+:	rtn
+
+
+
+Exercice 2:
+int VerrouA, VerrouB;
+void verrouillerA ();
+void verrouillerB ();

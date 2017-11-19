@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- SQL XML created by WWW SQL Designer, https://github.com/ondras/wwwsqldesigner/ -->
+<!-- Active URL: http://ondras.zarovi.cz/sql/demo/?keyword=default -->
+<sql>
+<datatypes db="mysql">
+	<group color="rgb(238,238,170)" label="Numeric">
+		<type label="Integer" quote="" sql="INTEGER" length="0"/>
+	 	<type label="TINYINT" quote="" sql="TINYINT" length="0"/>
+	 	<type label="SMALLINT" quote="" sql="SMALLINT" length="0"/>
+	 	<type label="MEDIUMINT" quote="" sql="MEDIUMINT" length="0"/>
+	 	<type label="INT" quote="" sql="INT" length="0"/>
+		<type label="BIGINT" quote="" sql="BIGINT" length="0"/>
+		<type label="Decimal" quote="" sql="DECIMAL" length="1" re="DEC"/>
+		<type label="Single precision" quote="" sql="FLOAT" length="0"/>
+		<type label="Double precision" quote="" sql="DOUBLE" length="0" re="DOUBLE"/>
+	</group>
+
+	<group color="rgb(255,200,200)" label="Character">
+		<type label="Char" quote="'" sql="CHAR" length="1"/>
+		<type label="Varchar" quote="'" sql="VARCHAR" length="1"/>
+		<type label="Text" quote="'" sql="MEDIUMTEXT" length="0" re="TEXT"/>
+		<type label="Binary" quote="'" sql="BINARY" length="1"/>
+		<type label="Varbinary" quote="'" sql="VARBINARY" length="1"/>
+		<type label="BLOB" quote="'" sql="BLOB" length="0" re="BLOB"/>
+	</group>
+
+	<group color="rgb(200,255,200)" label="Date &amp; Time">
+		<type label="Date" quote="'" sql="DATE" length="0"/>
+		<type label="Time" quote="'" sql="TIME" length="0"/>
+		<type label="Datetime" quote="'" sql="DATETIME" length="0"/>
+		<type label="Year" quote="" sql="YEAR" length="0"/>
+		<type label="Timestamp" quote="'" sql="TIMESTAMP" length="0"/>
+	</group>
+	
+	<group color="rgb(200,200,255)" label="Miscellaneous">
+		<type label="ENUM" quote="" sql="ENUM" length="1"/>
+		<type label="SET" quote="" sql="SET" length="1"/>
+		<type label="Bit" quote="" sql="bit" length="0"/>
+	</group>
+</datatypes><table x="396" y="361" name="Recette">
+<row name="ID_RECETTE" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="Ingredient-Recette" row="ID_RECETTE" />
+<relation table="Etapes" row="ID_RECETTE" />
+</row>
+<row name="Recette" null="0" autoincrement="1">
+<datatype>VARCHAR</datatype>
+<default>'NULL'</default></row>
+<row name="Descriptif" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="Auteur" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default><relation table="Utilisateur" row="LOGIN" />
+</row>
+<row name="Difficulte" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="Prix" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="Nombre_Personnes" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="Duree" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>ID_RECETTE</part>
+</key>
+</table>
+<table x="497" y="46" name="Utilisateur">
+<row name="LOGIN" null="1" autoincrement="1">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="Nom" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="Prenom" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="email" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="Password" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>LOGIN</part>
+</key>
+</table>
+<table x="983" y="300" name="Ingredient">
+<row name="ID_INGREDIENT" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="Ingredient-Recette" row="ID_INGREDIENT" />
+</row>
+<row name="Ingredient" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="Calories" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="Lipides" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="Glucides" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="Protides" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="Popularite" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="Defaut" null="1" autoincrement="0">
+<datatype>bit</datatype>
+<default>NULL</default></row>
+<row name="Remplacable" null="1" autoincrement="0">
+<datatype>bit</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>ID_INGREDIENT</part>
+</key>
+</table>
+<table x="740" y="0" name="Liste_Achat">
+<row name="ID_LISTE_ACHAT" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="Utilisateur" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default><relation table="Utilisateur" row="LOGIN" />
+</row>
+<row name="_Date" null="1" autoincrement="0">
+<datatype>DATE</datatype>
+<default>NULL</default></row>
+<row name="ID_Ingredient" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="Ingredient" row="ID_INGREDIENT" />
+</row>
+<row name="Archive" null="1" autoincrement="0">
+<datatype>bit</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>ID_LISTE_ACHAT</part>
+</key>
+</table>
+<table x="158" y="191" name="Planning">
+<row name="ID_PLANNING" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="Utilisateur" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default><relation table="Utilisateur" row="LOGIN" />
+</row>
+<row name="ID_RECETTE" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="Recette" row="ID_RECETTE" />
+</row>
+<row name="_Date" null="1" autoincrement="0">
+<datatype>DATE</datatype>
+<default>NULL</default></row>
+<row name="Archive" null="1" autoincrement="0">
+<datatype>bit</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>ID_PLANNING</part>
+</key>
+</table>
+<table x="721" y="405" name="Regime">
+<row name="ID_REGIME" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="ID_RECETTE" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="Recette" row="ID_RECETTE" />
+</row>
+<row name="Regime" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>ID_REGIME</part>
+</key>
+</table>
+<table x="316" y="712" name="Etapes">
+<row name="ID_RECETTE" null="1" autoincrement="0">
+<datatype>INT</datatype>
+<default>NULL</default></row>
+<row name="Numero_etape" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="Description" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="Duree" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>Numero_etape</part>
+<part>ID_RECETTE</part>
+</key>
+</table>
+<table x="679" y="571" name="Ingredient-Recette">
+<row name="ID_RECETTE" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="ID_INGREDIENT" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="Quantite" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>ID_RECETTE</part>
+<part>ID_INGREDIENT</part>
+</key>
+</table>
+<table x="1174" y="281" name="Categorie">
+<row name="ID_CATEGORIE" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="ID_INGREDIENT" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="Ingredient" row="ID_INGREDIENT" />
+</row>
+<key type="PRIMARY" name="">
+<part>ID_CATEGORIE</part>
+</key>
+</table>
+<table x="681" y="247" name="Ingredient-Utilisateur">
+<row name="Utilisateur" null="0" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>'NULL'</default><relation table="Utilisateur" row="LOGIN" />
+</row>
+<row name="ID_INGREDIENT" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="Ingredient" row="ID_INGREDIENT" />
+</row>
+<row name="Quantite" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+</table>
+<table x="124" y="473" name="Media">
+<row name="ID_MEDIA" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="ID_RECETTE" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="Recette" row="ID_RECETTE" />
+</row>
+<row name="Type" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="Lien" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>ID_MEDIA</part>
+</key>
+</table>
+</sql>
