@@ -1,0 +1,25 @@
+TD Algo
+Exercice 1 Suite de Fibonacci
+f(n)= 1 si n=0 ou 1
+f(n)= f(n-1) + f(n-2) si n>=2
+
+1) Ecrire un algo récursif de  de f(n)
+	f(n){
+	if(n<2)
+		return 1
+	else
+		return f(n-1) + f(n-2)
+	}
+
+2) Montrer que sa complexité (en nombre d'addtions) est (2^n/2)
+T(o) = T(1) = 0
+T(n) = T(n-1) + T(n-2) + 1
+
+?
+T(n-1) = T(n-2) + T(n-3) + 1
+T(n) = T(n-3) + 2T(n-2) + 2
+2(n-2)+1 additions?
+
+3) Ecrire un algo de calcul du couple (f(n), f(n-1))
+
+4) Quelle est sa complexité?

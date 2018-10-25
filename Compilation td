@@ -1,0 +1,47 @@
+Grammaire de mots de longueur paire:
+S -> SAA | &
+A -> a | b
+
+Grammaire des mots ne contenant pas deux symboles identiques de suite
+S -> AB
+A -> aB | &
+B -> bA | &
+
+Grammaire palindromes
+S -> aSa | bSb | a | b | &
+
+AnBn
+S -> aSb | ab
+
+Expression rationnelle
+S -> S U T | T
+T -> TF | F
+F -> G* | G
+G -> (E) | id | e
+
+S -> TS'
+S' -> U T S' | &
+T -> FT'
+T' -> FT' | &
+F -> GF'
+F' -> * | &
+G -> (E) | id | e
+
+E -> TE'
+E' -> UTE' | &
+T -> FT'
+T' -> FT' | &
+F -> GG'
+G' -> * | &
+G -> (E) | id | e
+
+E 	$ )
+E' 	$ ) 
+T 	U $ )
+T' 	U $ )
+F 	( id e U $ )
+G' 	* ( id e U $ )
+G 	( id e U $ )
+
+S' -> S
+S -> S(S) | &
