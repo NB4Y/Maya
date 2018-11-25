@@ -1,0 +1,112 @@
+
+summary(as.factor(cutree(HClust.1, k = 3))) # Cluster Sizes
+by(model.matrix(~-1 + Z.aout + Z.avril + Z.decembre + Z.fevrier + Z.janvier 
+  + Z.juillet + Z.juin + Z.mai + Z.mars + Z.novembre + Z.octobre + 
+  Z.septembre, temp), as.factor(cutree(HClust.1, k = 3)), colMeans) 
+  # Cluster Centroids
+biplot(princomp(model.matrix(~-1 + Z.aout + Z.avril + Z.decembre + 
+  Z.fevrier + Z.janvier + Z.juillet + Z.juin + Z.mai + Z.mars + Z.novembre + 
+  Z.octobre + Z.septembre, temp)), xlabs = as.character(cutree(HClust.1, k = 
+  3)))
+HClust.2 <- hclust(dist(model.matrix(~-1 + 
+  Z.aout+Z.avril+Z.decembre+Z.fevrier+Z.janvier+Z.juillet+Z.juin+Z.mai+Z.mars+Z.novembre+Z.octobre+Z.septembre,
+   temp)) , method= "single")
+plot(HClust.2, main= "Cluster Dendrogram for Solution HClust.2", xlab= 
+  "Observation Number in Data Set temp", 
+  sub="Method=single; Distance=euclidian")
+summary(as.factor(cutree(HClust.2, k = 3))) # Cluster Sizes
+by(model.matrix(~-1 + Z.aout + Z.avril + Z.decembre + Z.fevrier + Z.janvier 
+  + Z.juillet + Z.juin + Z.mai + Z.mars + Z.novembre + Z.octobre + 
+  Z.septembre, temp), as.factor(cutree(HClust.2, k = 3)), colMeans) 
+  # Cluster Centroids
+biplot(princomp(model.matrix(~-1 + Z.aout + Z.avril + Z.decembre + 
+  Z.fevrier + Z.janvier + Z.juillet + Z.juin + Z.mai + Z.mars + Z.novembre + 
+  Z.octobre + Z.septembre, temp)), xlabs = as.character(cutree(HClust.2, k = 
+  3)))
+temp.PCA<-temp[, c("janvier", "fevrier", "mars", "avril", "mai", "juin", 
+  "juillet", "aout", "septembre", "octobre", "novembre", "decembre", 
+  "Latitude", "Longitude", "Amplitude", "Moyenne", "Coul.Pol", "Littoral")]
+res<-PCA(temp.PCA , scale.unit=TRUE, ncp=Inf, quanti.sup=c(13: 16), 
+  quali.sup=c(17: 18), graph = FALSE)
+res.hcpc<-HCPC(res ,nb.clust=0,consol=FALSE,min=2,max=10,graph=TRUE)
+res.hcpc$data.clust[,ncol(res.hcpc$data.clust),drop=F]
+res.hcpc$desc.var
+res.hcpc$desc.axes
+res.hcpc$desc.ind
+plot.PCA(res, axes=c(1, 2), choix="ind", habillage="none", col.ind="black", 
+  col.ind.sup="blue", col.quali="magenta", label=c("ind", "ind.sup", "quali"),
+  new.plot=TRUE)
+plot.PCA(res, axes=c(1, 2), choix="var", new.plot=TRUE, col.var="black", 
+  col.quanti.sup="blue", label=c("var", "quanti.sup"), lim.cos2.var=0)
+summary(res, nb.dec = 3, nbelements=10, nbind = 10, ncp = 3, file="")
+remove(temp.PCA)
+temp.PCA<-temp[, c("janvier", "fevrier", "mars", "avril", "mai", "juin", 
+  "juillet", "aout", "septembre", "octobre", "novembre", "decembre", 
+  "Latitude", "Longitude", "Amplitude", "Moyenne", "Coul.Pol", "Littoral")]
+res<-PCA(temp.PCA , scale.unit=TRUE, ncp=Inf, quanti.sup=c(13: 16), 
+  quali.sup=c(17: 18), graph = FALSE)
+res.hcpc<-HCPC(res ,nb.clust=0,consol=FALSE,min=2,max=10,graph=TRUE)
+res.hcpc$data.clust[,ncol(res.hcpc$data.clust),drop=F]
+res.hcpc$desc.var
+res.hcpc$desc.axes
+res.hcpc$desc.ind
+plot.PCA(res, axes=c(1, 2), choix="ind", habillage="none", col.ind="black", 
+  col.ind.sup="blue", col.quali="magenta", label=c("ind", "ind.sup", "quali"),
+  new.plot=TRUE)
+plot.PCA(res, axes=c(1, 2), choix="var", new.plot=TRUE, col.var="black", 
+  col.quanti.sup="blue", label=c("var", "quanti.sup"), lim.cos2.var=0)
+summary(res, nb.dec = 3, nbelements=10, nbind = 10, ncp = 3, file="")
+remove(temp.PCA)
+temp.PCA<-temp[, c("janvier", "fevrier", "mars", "avril", "mai", "juin", 
+  "juillet", "aout", "septembre", "octobre", "novembre", "decembre", 
+  "Latitude", "Longitude", "Amplitude", "Moyenne", "Coul.Pol", "Littoral")]
+res<-PCA(temp.PCA , scale.unit=TRUE, ncp=Inf, quanti.sup=c(13: 16), 
+  quali.sup=c(17: 18), graph = FALSE)
+res.hcpc<-HCPC(res ,nb.clust=0,consol=FALSE,min=2,max=10,graph=TRUE)
+res.hcpc$data.clust[,ncol(res.hcpc$data.clust),drop=F]
+res.hcpc$desc.var
+res.hcpc$desc.axes
+res.hcpc$desc.ind
+plot.PCA(res, axes=c(1, 2), choix="ind", habillage="none", col.ind="black", 
+  col.ind.sup="blue", col.quali="magenta", label=c("ind", "ind.sup", "quali"),
+  new.plot=TRUE)
+plot.PCA(res, axes=c(1, 2), choix="var", new.plot=TRUE, col.var="black", 
+  col.quanti.sup="blue", label=c("var", "quanti.sup"), lim.cos2.var=0)
+summary(res, nb.dec = 3, nbelements=10, nbind = 10, ncp = 3, file="")
+remove(temp.PCA)
+temp.PCA<-temp[, c("janvier", "fevrier", "mars", "avril", "mai", "juin", 
+  "juillet", "aout", "septembre", "octobre", "novembre", "decembre", 
+  "Latitude", "Longitude", "Amplitude", "Moyenne", "Coul.Pol", "Littoral")]
+res<-PCA(temp.PCA , scale.unit=TRUE, ncp=Inf, quanti.sup=c(13: 16), 
+  quali.sup=c(17: 18), graph = FALSE)
+res.hcpc<-HCPC(res ,nb.clust=0,consol=FALSE,min=2,max=10,graph=TRUE)
+res.hcpc$data.clust[,ncol(res.hcpc$data.clust),drop=F]
+res.hcpc$desc.var
+res.hcpc$desc.axes
+res.hcpc$desc.ind
+plot.PCA(res, axes=c(1, 2), choix="ind", habillage="none", col.ind="black", 
+  col.ind.sup="blue", col.quali="magenta", label=c("ind", "ind.sup", "quali"),
+  new.plot=TRUE)
+plot.PCA(res, axes=c(1, 2), choix="var", new.plot=TRUE, col.var="black", 
+  col.quanti.sup="blue", label=c("var", "quanti.sup"), lim.cos2.var=0)
+summary(res, nb.dec = 3, nbelements=10, nbind = 10, ncp = 3, file="")
+remove(temp.PCA)
+X11
+temp.PCA<-temp[, c("janvier", "fevrier", "mars", "avril", "mai", "juin", 
+  "juillet", "aout", "septembre", "octobre", "novembre", "decembre", 
+  "Latitude", "Longitude", "Amplitude", "Moyenne", "Coul.Pol", "Littoral")]
+res<-PCA(temp.PCA , scale.unit=TRUE, ncp=Inf, quanti.sup=c(13: 16), 
+  quali.sup=c(17: 18), graph = FALSE)
+res.hcpc<-HCPC(res ,nb.clust=0,consol=FALSE,min=2,max=10,graph=TRUE)
+res.hcpc$data.clust[,ncol(res.hcpc$data.clust),drop=F]
+res.hcpc$desc.var
+res.hcpc$desc.axes
+res.hcpc$desc.ind
+plot.PCA(res, axes=c(1, 2), choix="ind", habillage="none", col.ind="black", 
+  col.ind.sup="blue", col.quali="magenta", label=c("ind", "ind.sup", "quali"),
+  new.plot=TRUE)
+plot.PCA(res, axes=c(1, 2), choix="var", new.plot=TRUE, col.var="black", 
+  col.quanti.sup="blue", label=c("var", "quanti.sup"), lim.cos2.var=0)
+summary(res, nb.dec = 3, nbelements=10, nbind = 10, ncp = 3, file="")
+remove(temp.PCA)
+

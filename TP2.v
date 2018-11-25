@@ -64,3 +64,71 @@ rewrite Zplus_comm.
 rewrite (Zplus_comm z0 z2).
 reflexivity.
 Qed.
+
+Inductive jour : Set :=
+| Lundi : jour
+| Mardi : jour
+| Mercredi : jour
+| Jeudi : jour
+| Vendredi : jour
+| Samedi : jour
+| Dimanche : jour.
+
+Definition jour_suivant (j:jour) : jour :=
+match j with
+| Lundi => Mardi
+| Mardi => Mercredi
+| Mercredi => Jeudi
+| Jeudi => Vendredi
+| Vendredi => Samedi
+| Samedi => Dimanche
+| Dimanche => Lundi
+end.
+
+Definition jour_precedent (j:jour) : jour :=
+match j with
+| Lundi => Dimanche
+| Mardi => Lundi
+| Mercredi => Mardi
+| Jeudi => Mercredi
+| Vendredi => Jeudi
+| Samedi => Vendredi
+| Dimanche => Samedi
+end.
+
+Lemma jsjp :
+  forall (j : jour),
+  jour_suivant(jour_precedent(j)) = j.
+Proof.
+intros.
+destruct j;
+split.
+Qed.
+
+Lemma jpjs :
+  forall (j : jour),
+  jour_precedent(jour_suivant(j)) = j.
+Proof.
+intros.
+destruct j;
+simpl;
+reflexivity.
+Qed.
+
+Fixpoint iter (f: jour->jour) (j:jour) (n:nat) :=
+match n with
+O => j
+| S p => f (iter f j p)
+end.
+
+
+
+
+
+
+
+
+
+
+
+
