@@ -1,0 +1,16 @@
+MPFR = Nombre réels
+MPC = Nombres complexes
+
+#pragma biblio precision(n) rounding (opt)
+{
+	
+}
+
+Ex.
+#pragma MPC precision(128) rounding(MPC_RNDZZ)
+{
+	resultat = -(sqrt(-NMAX*(8*pc-4*pow(NMAX,3)-4*pow(NMAX,2)-NMAX-8))-2*pow(NMAX,2)-NMAX)/(2*NMAX);
+}
+
+
+#pragma MP[C(FR)] precision([1-9][0-9]*) rounding ()
