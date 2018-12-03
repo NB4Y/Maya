@@ -147,11 +147,27 @@ apply btree_in_mirror_1.
 trivial.
 Qed.
 
+Inductive btree_lt: btree -> nat -> Prop :=
+  | lt_leaf: forall n, btree_lt leaf n
+  | lt_node: forall x g d n,
+             btree_lt g n ->
+             x < n ->
+             btree_lt d n ->
+             btree_lt (node x g d) n.
 
+Inductive btree_gt: btree -> nat -> Prop :=
+  | gt_leaf: forall n, btree_gt leaf n
+  | gt_node: forall x g d n,
+             btree_gt g n ->
+             x > n ->
+             btree_gt d n ->
+             btree_gt (node x g d) n.
 
-
-
-
+Lemma btree_in_lt: 
+  forall t x n,
+  btree_in x t -> btree_lt t n -> x < n.
+Proof.
+intros.
 
 
 
