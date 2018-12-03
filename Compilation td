@@ -43,14 +43,5 @@ F 	( id e U $ )
 G' 	* ( id e U $ )
 G 	( id e U $ )
 
-L -> SL'
-L'-> ;L | &
-S -> if c then LS' | while c do L | id = e
-S'-> else L | &
-
-L  if while id 		$ ; else 
-L' ; &				$ ; else 
-S  if while id 		$ ; else
-S' else &			$ ; else
-
-
+S' -> S
+S -> S(S) | &
